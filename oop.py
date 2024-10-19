@@ -35,6 +35,14 @@ class Animals(ABC):
     def medical_examination(self) -> str:
         pass
 
+    def get_disease(self) -> str:
+        return self._disease
+
+    def set_disease(self, new: str = 'заболеваний нет') -> None:
+        self._disease = new
+
+    property(get_disease, set_disease)
+
 
 class Cat(Animals):
     __count = 0
@@ -61,6 +69,7 @@ class Cat(Animals):
             self._disease = 'заболеваний нет'
         else:
             self._disease = choice(diseases_list)
+
         return f'был проведен медицинский осмотр,результат: {self._disease}'
 
     # метод помогает подобрать кличку(потом с помощью сеттера можно поменять)
@@ -73,8 +82,7 @@ class Cat(Animals):
     def count_cats() -> int:
         return Cat.__count
 
-    # расчет суточной нормы корма исходя из веса
-    def daily_norm_eat(self) -> int:
+    def daily_norm_eat(self) -> str:
         if self.weight < 2:
             eat = 1.4 * (70 * self.weight ** 0.75)
         else:
@@ -99,7 +107,7 @@ class Dog(Animals):
     def count_dogs() -> int:
         return Dog.__count
 
-    def daily_norm_eat(self) -> int:
+    def daily_norm_eat(self) -> str:
 
         if self.weight < 2:
             eat = 2 * (70 * self.weight ** 0.75)
@@ -124,6 +132,7 @@ class Dog(Animals):
             self._disease = 'заболеваний нет'
         else:
             self._disease = choice(diseases_list)
+
         return f'был проведен медицинский осмотр,результат: {self._disease}'
 
 
@@ -136,7 +145,9 @@ cat1.set_name('Кошкаа')
 print(cat1.get_name())
 cat1.set_name(Cat.choice_name())
 print(cat1.get_name())
-print(cat1._disease)
+print(cat1.get_disease())
+cat1.set_disease('ушной клещ')
+print(cat1.get_disease())
 print(cat1.medical_examination())
 
 print('-' * 15)
@@ -151,5 +162,7 @@ dog1.set_name('Собачкаа')
 print(dog1.get_name())
 dog1.set_name(Dog.choice_name())
 print(dog1.get_name())
-print(dog1._disease)
+print(dog1.get_disease())
+dog1.set_disease('лишай')
+print(dog1.get_disease())
 print(dog1.medical_examination())
