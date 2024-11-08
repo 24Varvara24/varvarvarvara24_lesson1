@@ -43,7 +43,7 @@ class InventoryPage(BasePage):
 
         self.item = (By.ID, 'item_0_title_link')  # Заголовок любого товара: Здесь будет локатор по ID
         self.add_jacket_to_catr_btn = (By.XPATH,
-                                       '//*[@id="inventory_container"]//div[4]/div[2]/div[2]/button')  # Кнопка Add to Cart для Sauce Labs Fleece Jacket: Здесь будет локатор XPATH
+                                       '//*[@id="add-to-cart-sauce-labs-fleece-jacket"]')  # Кнопка Add to Cart для Sauce Labs Fleece Jacket: Здесь будет локатор XPATH
         self.cart_btn = (By.XPATH, '//*[@class="shopping_cart_link"]')  # Кнопка корзины: Здесь будет локатор XPATH
 
     def choose_item(self) -> None:
