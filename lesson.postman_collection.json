@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "53b0e570-dab4-4958-a5ba-18335f5bc4f1",
+		"name": "lesson",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39795025"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}",
+					"host": [
+						"{{domain}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/{{test_id}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{test_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_1",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "cat cat cat",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "none",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{test_id}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{test_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "additionalMetadata",
+							"value": "img",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1efa8085-ff04-4000-a12d-cd7c4b939429"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/{{test_id}}/uploadImage",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"{{test_id}}",
+						"uploadImage"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
