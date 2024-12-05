@@ -64,8 +64,16 @@ class InventoryPage(BasePage):
         self.find_element(*self.cart_btn).click()
 
     @allure.step('проверить,открыта ли страница https://www.saucedemo.com/inventory.html')
-    def check_inventory_page_open(self) -> bool:
-        return self.get_current_url() == self.page_url
+    def check_inventory_page_open(self) -> None:
+        assert self.get_current_url() == self.page_url, (
+            '[FAILED]:Неправильный логин или/и пароль'
+        )
+
+    @allure.step('проверить,что страница https://www.saucedemo.com/inventory.html не открыта')
+    def check_inventory_page_not_open(self) -> None:
+        assert self.get_current_url() != self.page_url, (
+            '[FAILED]: Страница https://www.saucedemo.com/inventory.html открылась'
+        )
 
 
 class ItemPage(BasePage):
