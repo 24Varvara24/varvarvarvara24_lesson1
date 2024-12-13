@@ -26,37 +26,37 @@ class OverviewPage(BasePage):
 
     @allure.step('Проверить название товара')
     def get_bolt_tshirt_name(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt).text
+        return self.get_text(self.item_bolt_tshirt)
 
     @allure.step('Получить цену Sauce Labs Bolt T-Shirt(на странице заказа)')
     def get_bolt_tshirt_price(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt_price).text
+        return self.get_text(self.item_bolt_tshirt_price)
 
     @allure.step('Получить цену Sauce Labs Bolt T-Shirt(на странице заказа)')
     def get_bolt_tshirt_price(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt_price).text
+        return self.get_text(self.item_bolt_tshirt_price)
 
     @allure.step('Проверка наличия заголовка payment information и получить значение')
     def find_and_get_payment_information(self) -> str:
         assert self.find_element(*self.payment_info_label), ('[FAILED]:заголовок payment information отстуствует')
-        return self.find_element(*self.payment_info_value).text
+        return self.get_text(self.payment_info_value)
 
     @allure.step('Проверка наличия заголовка Shipping Information и получить значение')
     def find_and_get_shipping_info(self) -> str:
         assert self.find_element(*self.shipping_info_label), ('[FAILED]:заголовок shipping info отстуствует')
-        return self.find_element(*self.shipping_info_value).text
+        return self.get_text(self.shipping_info_value)
 
     @allure.step('Проверка наличия заголовка Shipping Information')
-    def find_total_info_label(self) -> str:
+    def find_total_info_label(self) -> None:
         assert self.find_element(*self.total_info_label), ('[FAILED]:заголовок Price Total: отстуствует')
 
     @allure.step('Получить цену товара без учета налогов(item_total)')
     def find_subtotal_value(self) -> str:
-        return self.find_element(*self.subtotal_label).text
+        return self.get_text(self.subtotal_label)
 
     @allure.step('Значение tax')
     def find_tax(self) -> str:
-        return self.find_element(*self.tax).text
+        return self.get_text(self.tax)
 
     @allure.step('Конечная цена с учетом налогов')
     def total_price(self) -> float:
@@ -65,4 +65,4 @@ class OverviewPage(BasePage):
 
     @allure.step('Клик по кнопке finish')
     def click_finish_btn(self) -> None:
-        self.find_element(*self.finish_btn).click()
+        self.click(self.finish_btn)

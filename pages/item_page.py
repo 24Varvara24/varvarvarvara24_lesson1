@@ -14,8 +14,8 @@ class ItemPage(BasePage):
 
     @allure.step('клик по кнопке "Add to cart"')
     def add_to_cart_btn_click(self) -> None:
-        self.find_element(*self.add_to_cart_btn).click()
+        self.click(self.add_to_cart_btn)
 
     @allure.step('клик по кнопке "Back to products"')
     def back_to_products_click(self) -> None:
-        self.find_element(*self.back_to_products).click()
+        self.click(self.back_to_products)

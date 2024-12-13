@@ -30,4 +30,4 @@ class CompletePage(BasePage):
 
     @allure.step('Клик по кнопке Back Home')
     def find_back_home_btn(self) -> None:
-        self.find_element(*self.back_home_btn).click()
+        self.click(self.back_home_btn)

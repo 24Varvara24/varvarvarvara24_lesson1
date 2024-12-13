@@ -27,7 +27,7 @@ class InventoryPage(BasePage):
         self.find_element(*self.add_bolt_tshirt_to_cart_btn).click()
 
     def number_in_red_circle(self) -> str:
-        return self.find_element(*self.shopping_cart_badge).text
+        return self.get_text(self.shopping_cart_badge)
 
     @allure.step('клик по иконке корзины')
     def cart_btn_click(self) -> None:
@@ -35,4 +35,4 @@ class InventoryPage(BasePage):
 
     @allure.step('Получить цену Sauce Labs Bolt T-Shirt(в каталоге)')
     def get_bolt_tshirt_price_catalog(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt_price).text
+        return self.get_text(self.item_bolt_tshirt_price)

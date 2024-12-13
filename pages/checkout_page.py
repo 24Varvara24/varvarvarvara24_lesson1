@@ -18,14 +18,14 @@ class CheckoutPage(BasePage):
 
     @allure.step('клик по кнопке "Checkout"')
     def click_btn_checkout(self) -> None:
-        self.find_element(*self.checkout_btn).click()
+        self.click(self.checkout_btn)
 
     @allure.step('ввод данных')
     def input_data(self, firstname: str, lastname: str, postal_code: str) -> None:
-        self.find_element(*self.firstname).send_keys(firstname)
-        self.find_element(*self.lastname).send_keys(lastname)
-        self.find_element(*self.postal_code).send_keys(postal_code)
+        self.input(self.firstname, firstname)
+        self.input(self.lastname, lastname)
+        self.input(self.postal_code, postal_code)
 
     @allure.step('клик по кнопке Continue')
     def click_continue_btn(self) -> None:
-        self.find_element(*self.continue_btn).click()
+        self.click(self.continue_btn)

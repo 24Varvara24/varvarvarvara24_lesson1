@@ -14,7 +14,7 @@ class CartPage(BasePage):
         self.item_list = (By.CSS_SELECTOR, '[class="cart_item"]')
         self.item_bolt_tshirt = (By.CSS_SELECTOR, '[data-test="inventory-item-name"]')
         self.item_bolt_tshirt_price = (
-            By.XPATH, '//*[@id="cart_contents_container"]/div/div[1]/div[3]/div[2]/div[2]/div')
+            By.CSS_SELECTOR, '[data-test="inventory-item-price"]')
 
     @allure.step('подсчет количества элемента inventory_item_desc на странице')
     def number_of_products(self) -> int:
@@ -22,8 +22,8 @@ class CartPage(BasePage):
 
     @allure.step('Проверить название товара')
     def get_bolt_tshirt_name(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt).text
+        return self.get_text(self.item_bolt_tshirt)
 
     @allure.step('Получить цену Sauce Labs Bolt T-Shirt(на странице корзины)')
     def get_bolt_tshirt_price(self) -> str:
-        return self.find_element(*self.item_bolt_tshirt_price).text
+        return self.get_text(self.item_bolt_tshirt_price)

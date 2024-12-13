@@ -13,6 +13,6 @@ class LoginPage(BasePage):
 
     @allure.step('аутентификация')
     def auth(self, login: str, password: str) -> None:
-        self.find_element(*self.login).send_keys(login)
-        self.find_element(*self.password).send_keys(password)
-        self.find_element(*self.login_btn).click()
+        self.input(self.login, login)
+        self.input(self.password, password)
+        self.click(self.login_btn)
