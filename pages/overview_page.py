@@ -1,0 +1,66 @@
+from pages.base_page import BasePage
+import allure
+from selenium.webdriver.common.by import By
+
+
+class OverviewPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver, timeout=60)
+
+        self.item_bolt_tshirt = (
+            By.CSS_SELECTOR, '[data-test="inventory-item-name"]')  # название товара:локатор по селектору
+        self.item_bolt_tshirt_price = (By.CSS_SELECTOR, '[class="inventory_item_price"]')  # цена:локатор по селектору
+        self.payment_info_label = (
+            By.CSS_SELECTOR, '[data-test="payment-info-label"]')  # Payment Information:локатор по селектору
+        self.payment_info_value = (By.CSS_SELECTOR, '[data-test="payment-info-value"]')
+        self.shipping_info_label = (
+            By.CSS_SELECTOR, '[data-test="shipping-info-label"]')  # Shipping Information:локатор по селектору
+        self.shipping_info_value = (By.CSS_SELECTOR, '[data-test="shipping-info-value"]')
+        self.total_info_label = (By.CSS_SELECTOR, '[data-test="total-info-label"]')  # Price Total:локатор по селектору
+        self.subtotal_label = (
+            By.CSS_SELECTOR, '[data-test="subtotal-label"]')  # итоговая цена без учета налогов:локатор по селектору
+        self.tax = (By.CSS_SELECTOR, '[data-test="tax-label"]')  # налоги:локатор по селектору
+        self.total_label = (By.CSS_SELECTOR, '[data-test="total-label"]')  # итоговая цена:локатор по селектору
+
+        self.finish_btn = (By.ID, 'finish')  # кнопка finish:локатор по Id
+
+    @allure.step('Проверить название товара')
+    def get_bolt_tshirt_name(self) -> str:
+        return self.get_text(self.item_bolt_tshirt)
+
+    @allure.step('Получить цену Sauce Labs Bolt T-Shirt(на странице заказа)')
+    def get_bolt_tshirt_price(self) -> str:
+        return self.get_text(self.item_bolt_tshirt_price)
+
+    @allure.step('Проверка отображения заголовка payment information и получить значение')
+    def find_and_get_payment_information(self) -> str:
+        self.elem_is_display(self.payment_info_label)
+
+        return self.get_text(self.payment_info_value)
+
+    @allure.step('Проверка отображения заголовка Shipping Information и получить значение')
+    def find_and_get_shipping_info(self) -> str:
+        self.elem_is_display(self.shipping_info_label)
+
+        return self.get_text(self.shipping_info_value)
+
+    @allure.step('Проверка отображения заголовка Shipping Information')
+    def find_total_info_label(self) -> None:
+        self.elem_is_display(self.total_info_label)
+
+    @allure.step('Получить цену товара без учета налогов(item_total)')
+    def find_subtotal_value(self) -> str:
+        return self.get_text(self.subtotal_label)
+
+    @allure.step('Значение tax')
+    def find_tax(self) -> str:
+        return self.get_text(self.tax)
+
+    @allure.step('Конечная цена с учетом налогов')
+    def total_price(self) -> float:
+        t = float(self.get_text(self.subtotal_label)[-5:]) + float(self.get_text(self.tax)[-4:])
+        return t
+
+    @allure.step('Клик по кнопке finish')
+    def click_finish_btn(self) -> None:
+        self.click(self.finish_btn)
