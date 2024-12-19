@@ -34,3 +34,7 @@ class BasePage:
     @allure.step('Ввод данных')
     def input(self, element: tuple, input_data: str) -> None:
         self.find_element(*element).send_keys(input_data)
+
+    @allure.step('Проверка отображения элемента')
+    def elem_is_display(self, element: tuple) -> None:
+        assert self.find_element(*element).is_displayed(), ('[FAILED]:элемент не отображается')

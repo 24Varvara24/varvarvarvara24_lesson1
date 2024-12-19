@@ -56,15 +56,15 @@ class Tests:
             assert catalog_price == overview_page.get_bolt_tshirt_price(), (
                 '[FAILED]:на странице заказа и в каталоге разные цены')
 
-        with allure.step('Проверить наличие заголовка Payment Information: и значение SauceCard #31337'):
+        with allure.step('Проверить отображение заголовка Payment Information: и значение SauceCard #31337'):
             assert overview_page.find_and_get_payment_information() == 'SauceCard #31337', (
                 '[FAILED]:у Payment Information другое значение')
 
-        with allure.step('Проверить наличие заголовка Shipping Information: и значение Free Pony Express Delivery!'):
+        with allure.step('Проверить отображение заголовка Shipping Information: и значение Free Pony Express Delivery!'):
             assert overview_page.find_and_get_shipping_info() == 'Free Pony Express Delivery!', (
                 '[FAILED]:у Shipping Information другое значение')
 
-        with allure.step('Проверить наличие заголовка Price Total:'):
+        with allure.step('Проверить отображение заголовка Price Total:'):
             overview_page.find_total_info_label()
 
         with allure.step('Проверить что цена(без налога) совпадает с указанной на странице со списком товаров'):

@@ -32,23 +32,21 @@ class OverviewPage(BasePage):
     def get_bolt_tshirt_price(self) -> str:
         return self.get_text(self.item_bolt_tshirt_price)
 
-    @allure.step('Получить цену Sauce Labs Bolt T-Shirt(на странице заказа)')
-    def get_bolt_tshirt_price(self) -> str:
-        return self.get_text(self.item_bolt_tshirt_price)
-
-    @allure.step('Проверка наличия заголовка payment information и получить значение')
+    @allure.step('Проверка отображения заголовка payment information и получить значение')
     def find_and_get_payment_information(self) -> str:
-        assert self.find_element(*self.payment_info_label), ('[FAILED]:заголовок payment information отстуствует')
+        self.elem_is_display(self.payment_info_label)
+
         return self.get_text(self.payment_info_value)
 
-    @allure.step('Проверка наличия заголовка Shipping Information и получить значение')
+    @allure.step('Проверка отображения заголовка Shipping Information и получить значение')
     def find_and_get_shipping_info(self) -> str:
-        assert self.find_element(*self.shipping_info_label), ('[FAILED]:заголовок shipping info отстуствует')
+        self.elem_is_display(self.shipping_info_label)
+
         return self.get_text(self.shipping_info_value)
 
-    @allure.step('Проверка наличия заголовка Shipping Information')
+    @allure.step('Проверка отображения заголовка Shipping Information')
     def find_total_info_label(self) -> None:
-        assert self.find_element(*self.total_info_label), ('[FAILED]:заголовок Price Total: отстуствует')
+        self.elem_is_display(self.total_info_label)
 
     @allure.step('Получить цену товара без учета налогов(item_total)')
     def find_subtotal_value(self) -> str:
@@ -60,7 +58,7 @@ class OverviewPage(BasePage):
 
     @allure.step('Конечная цена с учетом налогов')
     def total_price(self) -> float:
-        t = float(self.find_element(*self.subtotal_label).text[-5:]) + float(self.find_element(*self.tax).text[-4:])
+        t = float(self.get_text(self.subtotal_label)[-5:]) + float(self.get_text(self.tax)[-4:])
         return t
 
     @allure.step('Клик по кнопке finish')
